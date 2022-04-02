@@ -58,6 +58,7 @@ namespace EconomicManagementAPP.Controllers
                 return View(categories);
             }
             categories.UserId = UsersController.valorSesion.Id;
+            categories.DbStatus = true;
             var categorieExist =
                await repositorieCategories.ExistingCategories(categories.Name, categories.OperationTypeId, categories.UserId);
 
@@ -125,8 +126,14 @@ namespace EconomicManagementAPP.Controllers
             {
                 return RedirectToAction("NotFound", "Home");
             }
-           
-            await repositorieCategories.Delete(id);
+            var categoryTransactions = await repositorieCategories.ExistingCategoriesTransaction(categorie.Id);
+            if (categoryTransactions == false)
+            {
+                await repositorieCategories.Delete(id);
+                return RedirectToAction("Index", "Categories");
+            }
+
+            await repositorieCategories.DeleteModify(id);
             return RedirectToAction("Index", "Categories");
         }
 

@@ -47,14 +47,14 @@ namespace EconomicManagementAPP.Controllers
 
             if (result is null)
             {
-                ModelState.AddModelError(string.Empty, "Wrong Email or Password");
+                ModelState.AddModelError(string.Empty, "Wrong Email or Password");             
                 return View(loginViewModel);
             }
             else
             {
-            
+
                 valorSesion = result;
-                return RedirectToAction("Index", "Home"); 
+                return RedirectToAction("Index", "Home");
             }
 
         }

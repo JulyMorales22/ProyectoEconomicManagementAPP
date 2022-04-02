@@ -16,6 +16,7 @@ namespace EconomicManagementAPP.Models
         [Display(Name = "Operation type description")]
         public string OperationTypeDescription { get; set; }
         public IEnumerable<OperationTypes> OperationTypesList { get; set; }
+        public Boolean DbStatus { set; get; }
 
     }
 }

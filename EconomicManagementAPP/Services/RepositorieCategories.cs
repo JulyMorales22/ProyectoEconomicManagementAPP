@@ -17,8 +17,8 @@ namespace EconomicManagementAPP.Services
             using var connection = new SqlConnection(connectionString);
             // Requiere el await - tambien requiere el Async al final de la query
             var id = await connection.QuerySingleAsync<int>($@"INSERT INTO Categories 
-                                                (Name, OperationTypeId, UserId) 
-                                                VALUES (@Name, @OperationTypeId, @UserId ); SELECT SCOPE_IDENTITY();", categories);
+                                                (Name, OperationTypeId, UserId, DbStatus) 
+                                                VALUES (@Name, @OperationTypeId, @UserId,  @DbStatus ); SELECT SCOPE_IDENTITY();", categories);
             categories.Id = id;
         }
         public async Task<bool> ExistingCategories(string name, int operationTypeId, int userId)
@@ -30,7 +30,7 @@ namespace EconomicManagementAPP.Services
                                     FROM Categories
                                     WHERE Name = @Name AND OperationTypeId = @OperationTypeId AND UserId = @UserId;",
                                     new { name, operationTypeId, userId });
-            return exist == 1;
+                return exist == 1;
         }
 
         public async Task<IEnumerable<Categories>> GetCategories(int UserId)
@@ -42,7 +42,7 @@ namespace EconomicManagementAPP.Services
 															JOIN OperationTypes AS [ot] 
 															ON c.OperationTypeId=ot.Id
 				
-                                                    WHERE [c].UserId=@UserId", new { UserId});
+                                                    WHERE [c].UserId=@UserId AND [c].DbStatus=1", new { UserId});
             
 
         }
@@ -53,7 +53,7 @@ namespace EconomicManagementAPP.Services
             return await connection.QueryFirstOrDefaultAsync<Categories>(@"
                                                                 SELECT Id, Name
                                                                 FROM Categories
-                                                                WHERE Id = @Id ",
+                                                                WHERE Id = @Id AND DbStatus=1",
                                                                 new { id });
         }
 
@@ -70,6 +70,11 @@ namespace EconomicManagementAPP.Services
             using var connection = new SqlConnection(connectionString);
             await connection.ExecuteAsync("DELETE  FROM Categories WHERE Id = @Id", new { id });
         }
+        public async Task DeleteModify(int id)
+        {
+            using var connection = new SqlConnection(connectionString);
+            await connection.ExecuteAsync("UPDATE Categories SET DbStatus=0  WHERE Id = @Id", new { id });
+        }
 
         public async Task<Categories> GetCategorieByIds(int categoryId, int userId)
         {
@@ -79,6 +84,17 @@ namespace EconomicManagementAPP.Services
                                                                 FROM Categories
                                                                 WHERE Id = @categoryId  AND UserId = @UserId",
                                                                 new { categoryId, userId });
+        }
+        public async Task<bool> ExistingCategoriesTransaction(int Id)
+        {
+            using var connection = new SqlConnection(connectionString);
+            var exist = await connection.QueryFirstOrDefaultAsync<int>(
+                                @"SELECT 1
+                                    FROM Transactions
+                                    WHERE CategoryId = @Id GROUP BY  CategoryId;",
+                                new { Id });
+            return exist == 1;
+
         }
 
     }

@@ -75,6 +75,7 @@ namespace EconomicManagementAPP.Controllers
         {
             if (!ModelState.IsValid)
             {
+                transactions.CategoryList = await repositorieCategories.GetCategories(UsersController.valorSesion.Id);
                 return View(transactions);
             }
             Console.WriteLine("hola "+transactions.CategoryId);

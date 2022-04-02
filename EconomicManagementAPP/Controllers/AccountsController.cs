@@ -158,7 +158,7 @@ namespace EconomicManagementAPP.Controllers
         }
         // Eliminar
         [HttpGet]
-        public async Task<IActionResult> Delete(int id, int atId)
+        public async Task<IActionResult> Delete(int id)
         {
             if (UsersController.valorSesion is null)
             {

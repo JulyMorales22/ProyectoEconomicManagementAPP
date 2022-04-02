@@ -37,7 +37,7 @@ namespace EconomicManagementAPP.Services
         public async Task<Users> Login(string email, string password)
         {
             using var connection = new  SqlConnection(connectionString);
-            return await connection.QueryFirstOrDefaultAsync<Users>("SELECT * FROM Users WHERE Email = @email AND Password = @password", 
+            return await connection.QueryFirstOrDefaultAsync<Users>("SELECT * FROM Users WHERE Email = @email AND Password = @password AND DbStatus=1", 
                                                                     new { email, password });
 
         }
