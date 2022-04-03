@@ -31,7 +31,7 @@ namespace EconomicManagementAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            Console.WriteLine("entro");
+            
             if (!ModelState.IsValid)
             {
                 return View(loginViewModel);
@@ -140,20 +140,20 @@ namespace EconomicManagementAPP.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            id = UsersController.valorSesion.Id;
+            var users = await repositorieUsers.GetUserById(id);
 
-            var user = await repositorieUsers.GetUserById(id);
-
-            if (user is null)
+            if (users is null)
             {
                 return RedirectToAction("NotFound", "Home");
             }
 
-            return View(user);
+            return View(users);
         }
         [HttpPost]
         public async Task<IActionResult> DeleteUser(int id)
         {
-
+            id = UsersController.valorSesion.Id;
             var user = await repositorieUsers.GetUserById(id);
 
             if (user is null)
@@ -162,7 +162,8 @@ namespace EconomicManagementAPP.Controllers
             }
 
             await repositorieUsers.Delete(id);
-            return RedirectToAction("Index");
+            LogOut();
+            return RedirectToAction("Login", "Users");
         }
         public IActionResult LogOut()
         {

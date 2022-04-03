@@ -73,7 +73,7 @@ namespace EconomicManagementAPP.Services
         public async Task Delete(int id)
         {
             using var connection = new SqlConnection(connectionString);
-            await connection.ExecuteAsync("UPDATE SET DbStatus=0 FROM Users WHERE Id = @Id", new { id });
+            await connection.ExecuteAsync("UPDATE Users SET DbStatus=0  WHERE Id = @Id", new { id });
         }
 
         public bool Auth(ISession session)

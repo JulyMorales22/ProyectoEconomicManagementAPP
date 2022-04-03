@@ -33,4 +33,13 @@ public class RepositorieTransactions : IRepositorieTransactions
                                                 SELECT SCOPE_IDENTITY();", transactions);
         transactions.Id = id;
     }
+    public async Task<IEnumerable<Transactions>> GetAllTransactions(int userId)
+    {
+        using var connection = new SqlConnection(connectionString);
+        return await connection.QueryAsync<Transactions>(@"SELECT  [t].Description ,[t].[Total] 
+                                                             FROM Transactions AS [t]
+                                                             JOIN Users AS u
+                                                             ON u.Id=[t].UserId
+                                                             WHERE [t].UserId=@UserId  AND u.DbStatus=1", new { userId });
+    }
 }

@@ -44,15 +44,7 @@ namespace EconomicManagementAPP.Services
 
         }
 
-        /*public async Task<Categories> GetCategoriesById(int id)
-        {
-            using var connection = new SqlConnection(connectionString);
-            return await connection.QueryFirstOrDefaultAsync<Categories>(@"
-                                                                SELECT Id, Name
-                                                                FROM Categories
-                                                                WHERE Id = @Id AND DbStatus=1",
-                                                                new { id });
-        }*/
+       
 
         public async Task Modify(Categories categories)
         {

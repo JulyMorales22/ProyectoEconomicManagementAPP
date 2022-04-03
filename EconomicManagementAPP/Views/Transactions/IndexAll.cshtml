@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Transactions>
+
+@{
+    ViewData["Title"] = "Transactions";
+}
+
+
+<h1 class="titles">Transactions List</h1>
+
+
+<table class="table table-info table-bordered border-dark  text-center">
+    <thead class="titlesAccordion">
+        <tr>
+            <th>Description</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody id="reordenable">
+        @foreach (var transactions in Model)
+        {
+            <tr> 
+                <td>
+                    @transactions.Description                   
+                </td>
+                 <td>
+                    @transactions.Total                   
+                </td>
+                
+            </tr>
+        }
+       
+    </tbody>
+</table>

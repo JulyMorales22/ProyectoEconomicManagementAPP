@@ -6,5 +6,8 @@ namespace EconomicManagementAPP.Interface
     {
         Task Create(Transactions transactions);
         Task<IEnumerable<Transactions>> GetTransactions(int AccountId);
+        Task<IEnumerable<Transactions>> GetAllTransactions(int userId);
     }
+
+    
 }

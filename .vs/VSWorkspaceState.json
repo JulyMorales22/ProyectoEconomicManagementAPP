@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\EconomicManagementAPP",
-    "\\EconomicManagementAPP\\Validations",
-    "\\EconomicManagementAPP\\Views",
-    "\\EconomicManagementAPP\\Views\\Shared"
+    ""
   ],
-  "SelectedNode": "\\EconomicManagementAPP\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\EconomicManagementAPP.sln",
   "PreviewInSolutionExplorer": false
 }

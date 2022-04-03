@@ -62,9 +62,19 @@ namespace EconomicManagementAPP.Controllers
                 transactions.CategoryList = await repositorieCategories.GetCategories(UsersController.valorSesion.Id);
                 return View(transactions);
             }
-       
-            var accounts = await repositorieAccounts.GetAccountById(transactions.AccountId);
+            transactions.Money = (transactions.Money is null) ? "0" : transactions.Money.ToString().Replace(".", ",");
 
+            if (!Decimal.TryParse(transactions.Money.ToString(), out Decimal numTotal))
+            {
+                ModelState.AddModelError(nameof(transactions.Money),
+                    $"The value {transactions.Money} is not valid in controller.");
+            }
+            
+            transactions.Total = numTotal;
+         
+
+            var accounts = await repositorieAccounts.GetAccountById(transactions.AccountId);
+            
             if (accounts is null)
             {
                 return RedirectToAction("NotFound", "Home");
@@ -94,6 +104,20 @@ namespace EconomicManagementAPP.Controllers
                 return View(transactions);
             }
             return RedirectToAction("Index", "Transactions", new { id = transactions.AccountId});
+        }
+        public async Task<IActionResult> IndexAll()
+        {
+            if (UsersController.valorSesion is null)
+            {
+                return RedirectToAction("Login", "Users");
+            }
+            var userId = UsersController.valorSesion.Id;
+            var transactions = await repositorieTransactions.GetAllTransactions(userId);
+            if (transactions is null)
+            {
+                return RedirectToAction("NotFound", "Home");
+            }
+            return View(transactions);
         }
 
     }
