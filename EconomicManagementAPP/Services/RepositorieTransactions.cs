@@ -3,7 +3,7 @@ using EconomicManagementAPP.Models;
 using Microsoft.Data.SqlClient;
 namespace EconomicManagementAPP.Interface;
 
-public class RepositorieTransactions: IRepositorieTransactions
+public class RepositorieTransactions : IRepositorieTransactions
 {
     private readonly string connectionString;
     public RepositorieTransactions(IConfiguration configuration)
@@ -23,12 +23,11 @@ public class RepositorieTransactions: IRepositorieTransactions
             ORDER BY 3 DESC", new { AccountId });
     }
 
-        // funcion para crear una transaccion
-        public async Task Create(Transactions transactions)
-        {
-            using var connection = new SqlConnection(connectionString);
-            
-            var id = await connection.QuerySingleAsync<int>(@"INSERT INTO Transactions 
+    public async Task Create(Transactions transactions)
+    {
+        using var connection = new SqlConnection(connectionString);
+
+        var id = await connection.QuerySingleAsync<int>(@"INSERT INTO Transactions 
                                                 (UserId, TransactionDate, Total, Description, AccountId, CategoryId) 
                                                 VALUES (@UserId, @TransactionDate, @Total, @Description, @AccountId, @CategoryId);
                                                 SELECT SCOPE_IDENTITY();", transactions);

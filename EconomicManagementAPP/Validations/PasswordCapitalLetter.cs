@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace EconomicManagementAPP.Validations
 {
-    public class PasswordCapitalLetter :  ValidationAttribute
+    public class PasswordCapitalLetter : ValidationAttribute
     {
         protected override ValidationResult IsValid(Object value, ValidationContext validationContext)
         {

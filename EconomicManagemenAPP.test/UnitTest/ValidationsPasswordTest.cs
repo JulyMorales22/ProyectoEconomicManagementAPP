@@ -8,7 +8,7 @@ namespace EconomicManagementAPP.test
     [TestClass]
     public class ValidationsPasswordTest
     {
-       /* [TestMethod]
+        [TestMethod]
         public void ValidationsPasswordLength_ReturnError()
         {
             var validationsPassword = new ValidationLength();
@@ -46,7 +46,7 @@ namespace EconomicManagementAPP.test
 
             Assert.AreEqual("The password should have min one capital letter", testResult?.ErrorMessage);
 
-        }*/
+        }
 
         [TestMethod]
         public void NullData_NoErrorMessage()

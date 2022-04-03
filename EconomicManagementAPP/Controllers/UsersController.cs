@@ -1,15 +1,11 @@
 ﻿using EconomicManagementAPP.Interface;
 using EconomicManagementAPP.Models;
-using EconomicManagementAPP.Services;
-//using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections;
-using Microsoft.AspNetCore.Session;
-//using Microsoft.AspNetCore.Session;
+
 
 namespace EconomicManagementAPP.Controllers
 {
-    public class UsersController: Controller
+    public class UsersController : Controller
     {
 
         private readonly IRepositorieUsers repositorieUsers;
@@ -20,14 +16,11 @@ namespace EconomicManagementAPP.Controllers
             this.repositorieUsers = repositorieUsers;
         }
 
-        
-
         public IActionResult Create()
         {
             return View();
         }
-        
-        
+
 
         [HttpGet]
         public IActionResult Login()
@@ -47,7 +40,7 @@ namespace EconomicManagementAPP.Controllers
 
             if (result is null)
             {
-                ModelState.AddModelError(string.Empty, "Wrong Email or Password");             
+                ModelState.AddModelError(string.Empty, "Wrong Email or Password");
                 return View(loginViewModel);
             }
             else
@@ -75,7 +68,7 @@ namespace EconomicManagementAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Users users)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(users);
             }
@@ -89,30 +82,20 @@ namespace EconomicManagementAPP.Controllers
                 return View(users);
             }
             users.DbStatus = true;
-            //Console.WriteLine("soy el id de users " + users.Id);
             await repositorieUsers.Create(users);
-            //Console.WriteLine("soy el id de users "+users.Id);
-            if(users.Id.ToString() is null)
+
+            if (users.Id.ToString() is null)
             {
                 ModelState.AddModelError(nameof(users.Email),
                     $"Failed to create the user {users.Email}.");
 
                 return View(users);
             }
-            //TempData["IdAutentication"] = users.Id;
-            //session["idUser"] = users.Id;
             valorSesion = users;
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(SessionKeyEmail)))
-            //{
-            //    HttpContext.Session.SetInt32(SessionKeyId, users.Id);
-            //    HttpContext.Session.SetString(SessionKeyEmail, users.Email);
-            //}
-
-            //await signInManager.SignInAsync(users, isPersistent: true);
             return RedirectToAction("Index", "Home");
         }
 
-        //Actualizar
+
         [HttpGet]
         public async Task<ActionResult> Modify()
         {
@@ -144,20 +127,20 @@ namespace EconomicManagementAPP.Controllers
             {
                 return RedirectToAction("NotFound", "Home");
             }
-            if(users.Password is null)
+            if (users.Password is null)
             {
-           
+
                 users.Password = user.Password;
             }
 
             await repositorieUsers.Modify(users);// el que llega
             return RedirectToAction("Index", "Home");
         }
-        // Eliminar
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-         
+
             var user = await repositorieUsers.GetUserById(id);
 
             if (user is null)
@@ -170,7 +153,7 @@ namespace EconomicManagementAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteUser(int id)
         {
-           
+
             var user = await repositorieUsers.GetUserById(id);
 
             if (user is null)
@@ -183,11 +166,7 @@ namespace EconomicManagementAPP.Controllers
         }
         public IActionResult LogOut()
         {
-            
             valorSesion = null;
-            
-
-
 
             return RedirectToAction("Login");
         }

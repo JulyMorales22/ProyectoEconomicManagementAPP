@@ -7,7 +7,7 @@ namespace EconomicManagemenAPP.test
     [TestClass]
     public class FirstCapitalLetterTest
     {
-       [TestMethod]
+        [TestMethod]
         public void FirstLetterLower_ReturnError()
         {
             var firstCapitalLetter = new FirstCapitalLetter();
@@ -31,6 +31,6 @@ namespace EconomicManagemenAPP.test
             var testResult = firstCapitalLetter.GetValidationResult(data, context);
 
             Assert.IsNull(testResult);
-        }     
+        }
     }
 }

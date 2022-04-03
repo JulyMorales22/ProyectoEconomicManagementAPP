@@ -8,15 +8,12 @@
 }
 
 .boton {
-    /*font-size: 20px;
-    font-weight: 500;*/
-   /* padding: 0.5em 1.2em;*/
     border: 2px solid;
     border-color: #318aac;
     position: relative;
 }
 
-.boton:before {
+    .boton:before {
         content: "";
         position: absolute;
         top: 0px;
@@ -25,21 +22,39 @@
         height: 100%;
         background: rgba(255, 255, 255, 0.1);
         transition: all 1s ease;
- }
+    }
 
-.boton:hover:before {
-    width: 100%;
-}
+    .boton:hover:before {
+        width: 100%;
+    }
 
 .styleAccordion {
-    background-color:azure;  
+    background-color: #375593;
 }
+
+
+.accordionInter{
+    background-color: #7a9ce2 !important;
+}
+
+.bodyGen {
+    background: linear-gradient(to right, #8230b4, #163b37) !important;
+    /*background: linear-gradient(70deg, #152068, white);*/
+    /*background-color: #11bff7 !important;*/
+}
+
 .titles {
-    color: coral;
+    color: #ffffff !important;
+    font-family: cursive;
+    font-weight: 600;
+}
+.titlesGen {
     font-family: cursive;
     font-weight: 600;
 }
 
-
-
-
+.titlesAccordion {
+    color: #000000;
+    font-family: cursive !important;
+    font-weight: 600 !important;
+}

@@ -15,7 +15,6 @@ namespace EconomicManagementAPP.Controllers
             this.repositorieUsers = repositorieUsers;
         }
 
-        // Creamos index para ejecutar la interfaz
         public async Task<IActionResult> Index()
         {
             if (UsersController.valorSesion is null)
@@ -53,18 +52,15 @@ namespace EconomicManagementAPP.Controllers
 
             if (accountTypeExist)
             {
-                // AddModelError ya viene predefinido en .net
-                // nameOf es el tipo del campo
+
                 ModelState.AddModelError(nameof(accountTypes.Name),
-                    $"The account {accountTypes.Name} already exist.");
+                    $"The accountTypes {accountTypes.Name} already exist.");
 
                 return View(accountTypes);
             }
             accountTypes.DbStatus = true;
             int newId = await repositorieAccountTypes.Create(accountTypes);
-            // Redireccionamos a la lista
-            //return RedirectToAction("Index");
-            return RedirectToAction("Create", "Accounts", new { id=newId });
+            return RedirectToAction("Create", "Accounts", new { id = newId });
         }
 
         // Hace que la validacion se active automaticamente desde el front
@@ -77,7 +73,7 @@ namespace EconomicManagementAPP.Controllers
             if (accountTypeExist)
             {
                 // permite acciones directas entre front y back
-                return Json($"The account {Name} already exist");
+                return Json($"The accountTypes {Name} already exist");
             }
 
             return Json(true);
@@ -113,8 +109,8 @@ namespace EconomicManagementAPP.Controllers
             }
 
             await repositorieAccountTypes.Modify(accountTypes);// el que llega
-            return RedirectToAction("Index","Home");
-            
+            return RedirectToAction("Index", "Home");
+
         }
         // Eliminar
         [HttpGet]
@@ -133,7 +129,7 @@ namespace EconomicManagementAPP.Controllers
             }
 
             account.NumberAccount = await repositorieAccountTypes.GetNumberAccount(id);
-           
+
             return View(account);
         }
         [HttpPost]
@@ -155,7 +151,7 @@ namespace EconomicManagementAPP.Controllers
             }
 
             await repositorieAccountTypes.DeleteModify(id);
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

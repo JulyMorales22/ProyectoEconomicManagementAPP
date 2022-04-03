@@ -1,5 +1,4 @@
 ﻿using EconomicManagementAPP.Validations;
-using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace EconomicManagementAPP.Models

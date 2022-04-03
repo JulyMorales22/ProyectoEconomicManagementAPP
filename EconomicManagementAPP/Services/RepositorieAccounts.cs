@@ -13,22 +13,18 @@ namespace EconomicManagementAPP.Services
         {
             connectionString = configuration.GetConnectionString("DefaultConnection");
         }
-        // El async va acompañado de Task
         public async Task Create(Accounts accounts)
         {
             using var connection = new SqlConnection(connectionString);
-            // Requiere el await - tambien requiere el Async al final de la query
             var id = await connection.QuerySingleAsync<int>($@"INSERT INTO Accounts 
                                                 (Name, AccountTypeId, Balance, Description, DbStatus) 
                                                 VALUES (@Name, @AccountTypeId, @Balance, @Description, @DbStatus ); SELECT SCOPE_IDENTITY();", accounts);
             accounts.Id = id;
         }
 
-        //Cuando retorna un tipo de dato se debe poner en el Task Task<bool>
         public async Task<bool> ExistingAccount(string Name, int AccountTypeId)
         {
             using var connection = new SqlConnection(connectionString);
-            // El select 1 es traer lo primero que encuentre y el default es 0
             var exist = await connection.QueryFirstOrDefaultAsync<int>(
                                     @"SELECT 1
                                     FROM Accounts
@@ -49,7 +45,6 @@ namespace EconomicManagementAPP.Services
                                                         ON u.Id=[at].UserId
                                                         WHERE [at].UserId=@UserId AND [a].DbStatus=1  AND [at].DbStatus=1 AND u.DbStatus=1", new { UserId });
         }
-        // Actualizar
         public async Task Modify(Accounts accounts)
         {
             using var connection = new SqlConnection(connectionString);
@@ -58,7 +53,6 @@ namespace EconomicManagementAPP.Services
                                             WHERE Id = @Id", accounts);
         }
 
-        //Para actualizar se necesita obtener el tipo de cuenta por el id
         public async Task<Accounts> GetAccountById(int id)
         {
             using var connection = new SqlConnection(connectionString);
@@ -69,7 +63,6 @@ namespace EconomicManagementAPP.Services
                                                                 new { id });
         }
 
-        //Eliminar
         public async Task DeleteModify(int id)
         {
             using var connection = new SqlConnection(connectionString);

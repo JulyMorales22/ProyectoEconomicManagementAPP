@@ -1,16 +1,10 @@
 ﻿@model OperationTypes
 
-
-
 @{
-ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete";
 }
 
-
-
 <h3 class="mb-3">¿Are you sure you want to delete the operation type?: @Model.Description?</h3>
-
-
 
 <form asp-action="DeleteOperationTypes">
     <input type="hidden" asp-for="Id" />
@@ -19,5 +13,5 @@ ViewData["Title"] = "Delete";
 </form>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
+<partial name="_ValidationScriptsPartial" />
 }

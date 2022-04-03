@@ -7,29 +7,29 @@
     Categories categories = Model;
 }
 
-<h1>Create Categorie</h1>
+<h1 class="titles">Create Categorie</h1>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 <form asp-action="Create">
     <select asp-for="OperationTypeId" class="form-control" required>
-            <option>Select a operation type</option>
-            @foreach(var operationType in categories.OperationTypesList)
-            {
+        <option class="titlesGen">Select a operation type</option>
+        @foreach (var operationType in categories.OperationTypesList)
+        {
             <option value="@operationType.Id">@operationType.Description</option>
-            }
+        }
     </select>
     <span asp-validation-for="OperationTypeId" class="text-danger"> </span>
-    <div class="mb-3">
+    <div class="mb-3 titlesGen">
         <label asp-for="Name" class="form-label"></label>
         <input type="text" autofocus asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"> </span>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a class="btn btn-secondary" asp-controller="Categories" asp-action="Index">Cancel</a>
+    <button type="submit" class="btn btn-primary titlesGen">Create</button>
+    <a class="btn btn-secondary titlesGen" asp-controller="Categories" asp-action="Index">Cancel</a>
 
 
 </form>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
+<partial name="_ValidationScriptsPartial" />
 }

@@ -1,25 +1,19 @@
 ﻿@model Categories
 
 
-
 @{
-ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Delete";
 }
 
 
-
-<h3 class="mb-3">¿Are you sure you want to delete the Categories? @Model.Name? </h3>
-
+<h3 class="mb-3 titlesGen">¿Are you sure you want to delete the Categories? @Model.Name? </h3>
 
 
 <form asp-action="DeleteCategory">
-<input type="hidden" asp-for="Id" />
-<button type="submit" class="btn btn-danger">Delete</button>
-<a class="btn btn-secondary" asp-action="Index">Cancel</a>
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger titlesGen">Delete</button>
+    <a class="btn btn-secondary titlesGen" asp-action="Index">Cancel</a>
 </form>
-
-
-
 
 
 @section Scripts {

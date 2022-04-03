@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="~/css/AccorddionStyles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EconomicManagementAPP.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <title>  @ViewData["title"] - EconomicManagementAPP</title>
+    <title >  @ViewData["title"] - EconomicManagementAPP</title>
      
 </head>
-<body>
+<body class="bodyGen">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 bodyGen">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EconomicManagementAPP</a>
+                <a class="navbar-brand titles" asp-area="" asp-controller="Home" asp-action="Index">EconomicManagementAPP</a>
                 <span class="spacer"></span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -28,22 +28,22 @@
                         @if (UsersController.valorSesion is not null)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-dark titles" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
                                 @*apuntamos al controller asp-controller="AccountTypes" y al view asp-action="Index"*@
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
+                                <a class="nav-link text-dark titles" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
                             </li>
                             <span class="headerSpacer"></span>
-                            @*<li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Delete">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark titles" asp-area="" title="Delete" asp-controller="Users" asp-action="Delete">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                         <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                                     </svg>
                                 </a>
-                            </li>*@
+                            </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" title="Modify" asp-controller="Users" asp-action="Modify">
+                                <a class="nav-link text-dark titles" asp-area="" title="Modify" asp-controller="Users" asp-action="Modify">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wrench-adjustable" viewBox="0 0 16 16">
                                         <path d="M16 4.5a4.492 4.492 0 0 1-1.703 3.526L13 5l2.959-1.11c.027.2.041.403.041.61Z" />
                                         <path d="M11.5 9c.653 0 1.273-.139 1.833-.39L12 5.5 11 3l3.826-1.53A4.5 4.5 0 0 0 7.29 6.092l-6.116 5.096a2.583 2.583 0 1 0 3.638 3.638L9.908 8.71A4.49 4.49 0 0 0 11.5 9Zm-1.292-4.361-.596.893.809-.27a.25.25 0 0 1 .287.377l-.596.893.809-.27.158.475-1.5.5a.25.25 0 0 1-.287-.376l.596-.893-.809.27a.25.25 0 0 1-.287-.377l.596-.893-.809.27-.158-.475 1.5-.5a.25.25 0 0 1 .287.376ZM3 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
@@ -52,7 +52,7 @@
                             </li>
                             <li class="nav-item">
                                 @*apuntamos al controller asp-controller="AccountTypes" y al view asp-action="Index"*@
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="LogOut">Log Out</a>
+                                <a class="nav-link text-dark titles" asp-area="" asp-controller="Users" asp-action="LogOut">Log Out</a>
                             </li>
                         }
                         else
@@ -60,11 +60,11 @@
                             <span class="headerSpacer"></span>
                             <li class="nav-item">
                                 @*apuntamos al controller asp-controller="AccountTypes" y al view asp-action="Index"*@
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Create">Sign up</a>
+                                <a class="nav-link text-dark titles" asp-area="" asp-controller="Users" asp-action="Create">Sign up</a>
                             </li>
                             <li class="nav-item">
                                 @*apuntamos al controller asp-controller="AccountTypes" y al view asp-action="Index"*@
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+                                <a class="nav-link text-dark titles" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
                             </li>
                         }
 
@@ -81,7 +81,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container titles">
             &copy; 2022 - Developed by JulyMorales22
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -33,10 +33,6 @@ namespace EconomicManagementAPP.Controllers
             {
                 return RedirectToAction("NotFound", "Home");
             }
-            //Categories category = new();
-            //category.OperationTypeId = operation.Id;
-            ////Console.WriteLine(category.OperationTypeId);
-            //var categories = await repositorieCategories.GetCategories(userId);
             return View(categories);
         }
 
@@ -73,7 +69,7 @@ namespace EconomicManagementAPP.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public async Task<ActionResult> Modify( int id)
+        public async Task<ActionResult> Modify(int id)
         {
             var userId = UsersController.valorSesion.Id;
             var category = await repositorieCategories.GetCategorieByIds(id, userId);
@@ -113,7 +109,7 @@ namespace EconomicManagementAPP.Controllers
             {
                 return RedirectToAction("NotFound", "Home");
             }
-            
+
             return View(categorie);
         }
         [HttpPost]

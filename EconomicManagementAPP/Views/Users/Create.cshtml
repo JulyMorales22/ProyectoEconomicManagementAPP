@@ -3,10 +3,10 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Register user</h1>
+<h1 class="titles">Register user</h1>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<form asp-action="Create">
+<form asp-action="Create" class="styleAccordion titlesGen">
     <div class="mb-3">
         <label asp-for="Email" class="form-label"></label>
         <input type="email" asp-for="Email" class="form-control" />
@@ -23,9 +23,9 @@
         <span asp-validation-for="Password" class="text-danger"> </span>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
-    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+    <a class="btn btn-secondary" asp-action="Login">Cancel</a>
 </form>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
+<partial name="_ValidationScriptsPartial" />
 }

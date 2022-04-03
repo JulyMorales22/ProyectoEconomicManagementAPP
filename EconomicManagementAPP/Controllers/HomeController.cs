@@ -33,7 +33,7 @@ namespace EconomicManagementAPP.Controllers
                 AccountTypes = await repositorieAccountTypes.GetAccountsTypes(userId),
                 Accounts = await repositorieAccounts.GetAccounts(userId)
             };
-            //var  auth = repositorieUsers.Auth(HttpContext.Session);
+            
             
 
             return !accountAndAccountTypes.AccountTypes.Any() ? RedirectToAction("Create", "AccountTypes") : View(accountAndAccountTypes);

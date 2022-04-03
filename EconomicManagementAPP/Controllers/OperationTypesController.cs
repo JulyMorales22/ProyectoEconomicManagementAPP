@@ -21,7 +21,7 @@ namespace EconomicManagementAPP.Controllers
             var operationTypes = await repositorieOperationTypes.GetOperation();
             return View(operationTypes);
         }
-
+        /*
         public IActionResult Create()
         {
             if (UsersController.valorSesion is null)
@@ -42,99 +42,96 @@ namespace EconomicManagementAPP.Controllers
 
             return Json(true);
 
-        }
-        [HttpPost]
-       
-        public async Task<IActionResult> Create(OperationTypes operationTypes)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(operationTypes);
-            } // Validamos si ya existe antes de registrar
-            var operationTypesExist =
-            await repositorieOperationTypes.Exist(operationTypes.Description); if (operationTypesExist)
-            {
-                // AddModelError ya viene predefinido en .net
-                // nameOf es el tipo del campo
-                ModelState.AddModelError(nameof(operationTypes.Description),
-                $"The description {operationTypes.Description} already exist."); return View(operationTypes);
-            }
-            await repositorieOperationTypes.Create(operationTypes);
-            // Redireccionamos a la lista
-            return RedirectToAction("Index");
-            // return RedirectToAction("Create", "Accounts");
-        }
+        }*/
+        /* [HttpPost]
+
+         public async Task<IActionResult> Create(OperationTypes operationTypes)
+         {
+             if (!ModelState.IsValid)
+             {
+                 return View(operationTypes);
+             } // Validamos si ya existe antes de registrar
+             var operationTypesExist =
+             await repositorieOperationTypes.Exist(operationTypes.Description); if (operationTypesExist)
+             {
+
+                 ModelState.AddModelError(nameof(operationTypes.Description),
+                 $"The description {operationTypes.Description} already exist."); return View(operationTypes);
+             }
+             await repositorieOperationTypes.Create(operationTypes);
+             // Redireccionamos a la lista
+             return RedirectToAction("Index");
+
+         }
 
 
+         [HttpGet]
+         public async Task<ActionResult> Modify(int id)
+         {
+             if (UsersController.valorSesion is null)
+             {
+                 return RedirectToAction("Login", "Users");
+             }
+             var operationType = await repositorieOperationTypes.GetOperationById(id);
 
-        //Actualizar
-        [HttpGet]
-        public async Task<ActionResult> Modify(int id)
-        {
-            if (UsersController.valorSesion is null)
-            {
-                return RedirectToAction("Login", "Users");
-            }
-            var operationType = await repositorieOperationTypes.GetOperationById(id);
+             if (operationType is null)
+             {
+                 return RedirectToAction("NotFound", "Home");
+             }
 
-            if (operationType is null)
-            {
-                return RedirectToAction("NotFound", "Home");
-            }
+             return View(operationType);
+         }
+         [HttpPost]
+         public async Task<ActionResult> Modify(OperationTypes operationTypes)
+         {
 
-            return View(operationType);
-        }
-        [HttpPost]
-        public async Task<ActionResult> Modify(OperationTypes operationTypes)
-        {
+             if (!ModelState.IsValid)
+             {
+                 return View(operationTypes);
+             }
 
-            if (!ModelState.IsValid)
-            {
-                return View(operationTypes);
-            }
+             var operationType = await repositorieOperationTypes.GetOperationById(operationTypes.Id);
 
-            var operationType = await repositorieOperationTypes.GetOperationById(operationTypes.Id);
-
-            if (operationType is null)
-            {
-                return RedirectToAction("NotFound", "Home");
-            }
+             if (operationType is null)
+             {
+                 return RedirectToAction("NotFound", "Home");
+             }
 
 
-            await repositorieOperationTypes.Modify(operationTypes);// el que llega
-            return RedirectToAction("Index");
-        }
-        // Eliminar
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
-        {
-            if (UsersController.valorSesion is null)
-            {
-                return RedirectToAction("Login", "Users");
-            }
+             await repositorieOperationTypes.Modify(operationTypes);// el que llega
+             return RedirectToAction("Index");
+         }
 
-            var operationType = await repositorieOperationTypes.GetOperationById(id);
+         [HttpGet]
+         public async Task<IActionResult> Delete(int id)
+         {
+             if (UsersController.valorSesion is null)
+             {
+                 return RedirectToAction("Login", "Users");
+             }
 
-            if (operationType is null)
-            {
-                return RedirectToAction("NotFound", "Home");
-            }
+             var operationType = await repositorieOperationTypes.GetOperationById(id);
 
-            return View(operationType);
-        }
-        [HttpPost]
-        public async Task<IActionResult> DeleteOperationTypes(int id)
-        {
+             if (operationType is null)
+             {
+                 return RedirectToAction("NotFound", "Home");
+             }
 
-            var operationTypes = await repositorieOperationTypes.GetOperationById(id);
+             return View(operationType);
+         }
+         [HttpPost]
+         public async Task<IActionResult> DeleteOperationTypes(int id)
+         {
 
-            if (operationTypes is null)
-            {
-                return RedirectToAction("NotFound", "Home");
-            }
+             var operationTypes = await repositorieOperationTypes.GetOperationById(id);
 
-            await repositorieOperationTypes.Delete(id);
-            return RedirectToAction("Index");
-        }
+             if (operationTypes is null)
+             {
+                 return RedirectToAction("NotFound", "Home");
+             }
+
+             await repositorieOperationTypes.Delete(id);
+             return RedirectToAction("Index");
+         }*/
     }
 }

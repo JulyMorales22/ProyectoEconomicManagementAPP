@@ -17,26 +17,10 @@ namespace EconomicManagementAPP.Controllers
             this.repositorieUsers = repositorieUsers;
         }
 
-        // Creamos index para ejecutar la interfaz
         public IActionResult Index()
         {
             return RedirectToAction("Index", "Home");
         }
-
-        //public async Task<IActionResult> AddFounds(int atId, int id)
-        //{
-        //    var accountType = await repositorieAccountTypes.GetAccountById(atId);
-        //    if (accountType is null)
-        //    {
-        //        return RedirectToAction("NotFound", "Home");
-        //    }
-        //    var account = await repositorieAccounts.GetAccountById(id);
-        //    if (account is null)
-        //    {
-        //        return RedirectToAction("NotFound", "Home");
-        //    }
-        //    return View(account);
-        //}
 
 
         public async Task<IActionResult> Create(int id)
@@ -58,7 +42,7 @@ namespace EconomicManagementAPP.Controllers
 
             return View(account);
         }
-       
+
 
         [HttpPost]
         public async Task<IActionResult> Create(Accounts accounts)
@@ -75,8 +59,6 @@ namespace EconomicManagementAPP.Controllers
 
             if (accountExist)
             {
-                // AddModelError ya viene predefinido en .net
-                // nameOf es el tipo del campo
                 ModelState.AddModelError(nameof(accounts.Name),
                     $"The account {accounts.Name} already exist.");
 
@@ -98,13 +80,6 @@ namespace EconomicManagementAPP.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        //public async Task<ActionResult> AddFounds()
-        //{
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-        // Hace que la validacion se active automaticamente desde el front
         [HttpGet]
         public async Task<IActionResult> VerificaryAccounts(string Name, int AccountTypeId)
         {
@@ -112,14 +87,13 @@ namespace EconomicManagementAPP.Controllers
 
             if (accountExist)
             {
-                // permite acciones directas entre front y back
                 return Json($"The account {Name} already exist");
             }
 
             return Json(true);
         }
 
-        //Actualizar
+        
         [HttpGet]
         public async Task<ActionResult> Modify(int id, int atId)
         {
@@ -134,7 +108,6 @@ namespace EconomicManagementAPP.Controllers
                 return RedirectToAction("NotFound", "Home");
             }
             account.AccountTypeId = atId;
-            Console.WriteLine("lleva al post"+account.AccountTypeId);
             return View(account);
         }
         [HttpPost]
@@ -144,19 +117,17 @@ namespace EconomicManagementAPP.Controllers
             {
                 return View(accounts);
             }
-            Console.WriteLine("este es el id de cuenta: " + accounts.Id + "este es el id tipos" + accounts.AccountTypeId);
+            
             var account = await repositorieAccounts.GetAccountById(accounts.Id);
-            Console.WriteLine("este es el id de cuenta: "+account.Id+ "este es el id tipo" + account.AccountTypeId);
             if (account is null)
             {
                 return RedirectToAction("NotFound", "Home");
             }
 
-            await repositorieAccounts.Modify(accounts);// el que llega
+            await repositorieAccounts.Modify(accounts);
             return RedirectToAction("Index", "Home");
 
         }
-        // Eliminar
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
@@ -176,7 +147,7 @@ namespace EconomicManagementAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteAccount(int id)
         {
-            
+
             var account = await repositorieAccounts.GetAccountById(id);
 
             if (account is null)
@@ -184,7 +155,7 @@ namespace EconomicManagementAPP.Controllers
                 return RedirectToAction("NotFound", "Home");
             }
             var accountTransaction = await repositorieAccounts.ExistingAccountTransaction(account.Id);
-            if(accountTransaction == false)
+            if (accountTransaction == false)
             {
                 await repositorieAccounts.Delete(id);
                 return RedirectToAction("Index", "Home");

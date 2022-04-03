@@ -6,7 +6,7 @@ namespace EconomicManagementAPP.Models
     {
 
         [Required(ErrorMessage = "{0} is required")]
-        [EmailAddress(ErrorMessage ="Invalid format Email")]
+        [EmailAddress(ErrorMessage = "Invalid format Email")]
         public string Email { set; get; }
         [Required(ErrorMessage = "{0} is required")]
         [DataType(DataType.Password)]

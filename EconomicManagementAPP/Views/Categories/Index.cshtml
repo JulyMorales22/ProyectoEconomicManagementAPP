@@ -5,12 +5,12 @@
 }
 
 
-<h1>Categories List</h1>
+<h1 class="titles">Categories List</h1>
 
-<a asp-action="Create" class="btn btn-primary mb-3">Create category</a>
+<a asp-action="Create" class="btn btn-primary mb-3 titlesGen">Create category</a>
 
 <table class="table table-info table-bordered border-dark  text-center">
-    <thead class="titles">
+    <thead class="titlesAccordion">
         <tr>
             <th>Actions</th>
             <th>Name</th>
@@ -23,8 +23,8 @@
             <tr>
                 <td>
                     <input type="hidden" value="@categories.Id" class="ids" />
-                    <a class="btn btn-primary" asp-action="Modify" asp-route-id="@categories.Id">Modify</a>
-                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@categories.Id">Delete</a>
+                    <a class="btn btn-primary titlesGen" asp-action="Modify" asp-route-id="@categories.Id">Modify</a>
+                    <a class="btn btn-danger titlesGen" asp-action="Delete" asp-route-id="@categories.Id">Delete</a>
                 </td>
 
                 <td>
@@ -40,5 +40,4 @@
     </tbody>
 </table>
 
-<button class="boton"> prueba</button>
 

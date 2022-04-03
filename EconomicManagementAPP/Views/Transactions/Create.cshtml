@@ -1,6 +1,5 @@
 ﻿@model Transactions
 
-
 @{
     ViewData["Title"] = "New transaction";
 }
@@ -9,48 +8,47 @@
     Transactions transactions = Model;
 }
 
-
-<h1>New transaction from @Model.AccountName</h1>
+<h1 class="titles">New transaction from @Model.AccountName</h1>
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <form asp-action="Create">
     <input type="hidden" asp-for="AccountId" />
-    <div class="mb-3">
+    <div class="mb-3 titlesGen">
         <label asp-for="CategoryId" class="form-label">Categoria</label>
         <select asp-for="CategoryId" class="form-control" required>
             <option>Select a category</option>
             <optgroup label="Income">
-            @foreach(var category in transactions.CategoryList)
-            {
-                @if (category.OperationTypeDescription.Equals("Income"))
+                @foreach (var category in transactions.CategoryList)
                 {
-                   <option value="@category.Id">@category.Name</option>
+                    @if (category.OperationTypeDescription.Equals("Income"))
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
                 }
-            }
             </optgroup>
             <optgroup label="Expenditure">
-            @foreach(var category in transactions.CategoryList)
-            {
-                @if (category.OperationTypeDescription.Equals("Expenditure"))
+                @foreach (var category in transactions.CategoryList)
                 {
-                    <option value="@category.Id">@category.Name</option>
+                    @if (category.OperationTypeDescription.Equals("Expenditure"))
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
                 }
-            }
             </optgroup>
         </select>
         <span asp-validation-for="CategoryId" class="text-danger"> </span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 titlesGen">
         <label asp-for="Description" class="form-label"></label>
         <input type="text" autofocus asp-for="Description" class="form-control" />
         <span asp-validation-for="Description" class="text-danger"> </span>
     </div>
-    <div class="mb-3">
+    <div class="mb-3 titlesGen">
         <label asp-for="Total" class="form-label"></label>
         <input type="text" asp-for="Total" class="form-control" />
         <span asp-validation-for="Total" class="text-danger"> </span>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+    <button type="submit" class="btn btn-primary titlesGen">Create</button>
+    <a class="btn btn-secondary titlesGen" asp-controller="Home" asp-action="Index">Cancel</a>
 
 </form>
 
