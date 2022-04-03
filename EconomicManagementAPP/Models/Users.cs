@@ -15,6 +15,8 @@ namespace EconomicManagementAPP.Models
         public string StandarEmail { set; get; }
         [Required(ErrorMessage = "{0} is required")]
         [ValidationsPassword]
+        [ValidationLength]
+        [PasswordCapitalLetter]
         public string Password { set; get; }
         public Boolean DbStatus { set; get; }
     }
