@@ -4,10 +4,11 @@
     ViewData["Title"] = "Modify Users";
 }
 
-<h1 class="titles">Modify User: @Model.Email</h1>
+<h1 class="titles titleForm">Modify User: @Model.Email</h1>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+<div class="divForm">
+    
 <form asp-action="Modify">
     <input type="hidden" asp-for="Id" />
     <input type="hidden" asp-for="Email" />
@@ -25,6 +26,9 @@
     <button type="submit" class="btn btn-primary titlesGen">Modify</button>
     <a class="btn btn-secondary titlesGen" asp-action="Index" asp-controller="Home">Cancel</a>
 </form>
+</div>
+</div>
+
 
 @section Scripts {
 <partial name="_ValidationScriptsPartial" />

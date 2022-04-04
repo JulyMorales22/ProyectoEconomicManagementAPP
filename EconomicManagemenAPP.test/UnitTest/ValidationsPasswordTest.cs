@@ -48,18 +48,5 @@ namespace EconomicManagementAPP.test
 
         }
 
-        [TestMethod]
-        public void NullData_NoErrorMessage()
-        {
-            var validationPassword = new PasswordCapitalLetter();
-            string data = "";
-
-            var context = new ValidationContext(new { Password = data });
-
-            var testResult = validationPassword.GetValidationResult(data, context);
-
-            Assert.IsNull(testResult);
-        }
-
     }
 }

@@ -58,3 +58,15 @@
     font-family: cursive !important;
     font-weight: 600 !important;
 }
+
+.divForm{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+
+.titleForm {
+    display: flex;
+    justify-content: center;
+}
