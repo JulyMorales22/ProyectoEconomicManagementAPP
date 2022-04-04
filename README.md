@@ -12,4 +12,34 @@ En la pestaña Home podrás ver los tipos de cuentas que tienes registrado y cre
 #En la carpeta del proyecto esta el archivo EconomicManagementDB con el script para ejecutar la base de datos 
 
 
+#Vista Login
+
+ ![image](https://user-images.githubusercontent.com/90154419/161608867-f6ea662c-043e-454e-bb94-fb7e7f34bee7.png)
+
+#Vista Lista Account Types
+
+![image](https://user-images.githubusercontent.com/90154419/161608900-d1575cd0-6044-4281-8d34-144440a4a6e7.png)
+
+#Vista Account relacionadas con Account Types
+
+![image](https://user-images.githubusercontent.com/90154419/161608939-4e539de9-476f-4cd6-94f4-a24842442cb0.png)
+
+#Vista Category
+
+![image](https://user-images.githubusercontent.com/90154419/161608981-6f180258-e028-486e-9e42-0228e3eb7fc7.png)
+
+#Vista transactions
+
+![image](https://user-images.githubusercontent.com/90154419/161609031-3b0129bb-af94-484a-9558-e1d6be44a7bc.png)
+
+
+#Vista Create User
+
+![image](https://user-images.githubusercontent.com/90154419/161609073-bef26937-9300-4dec-aa57-7ca999579b31.png)
+
+
+
+
+
+
 
